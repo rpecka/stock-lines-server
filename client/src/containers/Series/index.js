@@ -18,7 +18,7 @@ class Form extends Component {
     event.preventDefault();
     let tweetCards = this.state.tweetArray;
     tweetCards.unshift(this.state.value);
-    this.setState({tweetArray: tweetCards})
+    this.setState({tweetArray: tweetCards, value: ''})
   }
 
     render() {
