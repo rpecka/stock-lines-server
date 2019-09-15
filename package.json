@@ -13,6 +13,7 @@
     "fast-csv": "^3.4.0",
     "pondjs": "^0.8.10",
     "react-timeseries-charts": "^0.16.1",
+    "react-twitter-widgets": "^1.7.1",
     "yarn": "^1.17.3"
   },
   "devDependencies": {
