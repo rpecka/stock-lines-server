@@ -9,7 +9,7 @@ const model_versions = {
 
 const projectId = 'stock-lines';
 const computeRegion = 'us-central1';
-const modelId = model_versions.version9;
+const modelId = model_versions.version8;
 
 const modelFullId = client.modelPath(projectId, computeRegion, modelId);
 
