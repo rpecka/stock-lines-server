@@ -6,15 +6,9 @@ class TweetTable extends Component {
     render() {
         return (
             <div>
-                <table>
-                    {this.props.tweetArray.map((tweet) => (
-                      <tr key={tweet}>
-                          <td>
-                          <TweetCard tweettext={tweet}/>
-                          </td>
-                      </tr>
-                    ))}
-                </table>
+                {this.props.tweetArray.map((tweet) => (
+                    <TweetCard tweettext={tweet}/>
+                ))}
             </div>
 
         );
