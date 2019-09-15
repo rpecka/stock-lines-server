@@ -24,9 +24,11 @@ app.post('/api/predict', (req, res) => {
 	console.log("Text: " + text);
 	predict(text).then((category) => {
 		makeTickerResponse().then((response) => {
-			// Write some random data for now
-			response.dates.push('1568535042000');
-			response.values.push(2570);
+			let factor = factorForCategory(category);
+			let last = response.values[response.values.length - 1];
+			let newPrice = last + last * factor;
+			response.dates.push((new Date).getTime());
+			response.values.push(newPrice);
 			res.send(JSON.stringify(response));
 		});
 	})
@@ -43,6 +45,20 @@ function makeTickerResponse() {
 			resolve({dates: keys, values: values, ticker:'S&P 500'});
 		});
 	});
+}
+
+function factorForCategory(category) {
+	if (category === "drastic decrease") {
+		return -0.015;
+	} else if (category === "decrease") {
+		return -0.005;
+	} else if (category == "no_change") {
+		return 0;
+	} else if (category == "increase") {
+		return 0.005
+	} else {
+		return 0.015;
+	}
 }
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
