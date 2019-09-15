@@ -10,7 +10,13 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin: 20px;
 }
+
+h1.App-title {
+  margin-bottom: 0px;
+}
+
 
 .App-link {
   color: #61dafb;
@@ -23,4 +29,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

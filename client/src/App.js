@@ -7,7 +7,6 @@ import './App.css';
 import 'whatwg-fetch'
 
 
-
 class App extends React.Component {
   render() {
       console.log("Rengering app");
@@ -15,25 +14,26 @@ class App extends React.Component {
         <div className="App">
           <header className="App-header">
             <h1 className="App-title">Tweet Like Trump </h1>
+              <Intro message="tweet as if you were trump and see the stock reaction"/>
           </header>
-          <Intro message="tweet as if you were trump and see the stock reaction"/>
-          <div>
-              <div style={{display: 'flex', justifyContent: 'center'}}>
-                <GraphApp />
+          <div className="content">
+              <div>
+                  <Form />
+                  <Timeline
+                      dataSource={{
+                          sourceType: 'profile',
+                          screenName: 'realdonaldtrump'
+                      }}
+                      options={{
+                          username: 'realDonaldTrump',
+                          height: 400
+                      }}
+                      onLoad={() => console.log('Timeline is loaded!')}
+                  />
               </div>
-              <Form />
-              <Timeline
-                  dataSource={{
-                      sourceType: 'profile',
-                      screenName: 'realdonaldtrump'
-                  }}
-                  options={{
-                      username: 'realDonaldTrump',
-                      height: '400',
-                      width:'600'
-                  }}
-                  onLoad={() => console.log('Timeline is loaded!')}
-              />
+              <div style={{display: 'flex', justifyContent: 'center'}}>
+                  <GraphApp />
+              </div>
           </div>
 
         </div>

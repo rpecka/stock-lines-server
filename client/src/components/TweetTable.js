@@ -5,7 +5,7 @@ class TweetTable extends Component {
 
     render() {
         return (
-            <div>
+            <div className="tweet">
                 {this.props.tweetArray.map((tweet) => (
                     <TweetCard tweettext={tweet}/>
                 ))}

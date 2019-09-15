@@ -1,0 +1,20 @@
+.handle {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.handle h3 {
+    font-size: 14px;
+}
+
+.tweet {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 10px;
+}
+
+.tweet p{
+    text-align: left;
+}

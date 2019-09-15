@@ -1,5 +1,7 @@
 import React, {Component} from "react";
+import './index1.css';
 import TweetTable from '../../components/TweetTable';
+import trump from "./Unknown.jpg";
 
 class Form extends Component {
   constructor(props) {
@@ -23,15 +25,15 @@ class Form extends Component {
 
     render() {
         return (
-            <div>
+            <div className="newTweet">
+                <div className="handle">
+
                 <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Tweet:
-                        <input type="text" value = {this.state.value}
+                    <input className="input" type="text" value = {this.state.value}
                                onChange = {this.handleChange} />
-                    </label>
-                    <input type="submit" value="Submit" />
+                    <input className="button" type="submit" value="Tweet" />
                 </form>
+                </div>
                 <TweetTable tweetArray = {this.state.tweetArray}/>
             </div>
         );
