@@ -11,9 +11,9 @@ class TweetCard extends Component {
                     <img src={Trump} />
                     <h3> "Donald J. Trump" </h3>
                 </div>
-            <p>
-                {this.props.tweettext}
-            </p>
+                <p>
+                    {this.props.tweettext[0]} ({this.props.tweettext[1]})
+                </p>
             </div>
 
         );

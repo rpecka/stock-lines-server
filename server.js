@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/api/ticker', (req, res) => {
 	ticker = req.body.ticker;
 	console.log('User requested ticker: ' + ticker);
-	makeTickerResponse().then((response) => {
+	makeTickerResponse(null).then((response) => {
 		res.send(response);
 	});
 });
@@ -23,7 +23,7 @@ app.post('/api/predict', (req, res) => {
 	text = req.body.text;
 	console.log("Text: " + text);
 	predict(text).then((category) => {
-		makeTickerResponse().then((response) => {
+		makeTickerResponse(category).then((response) => {
 			let factor = factorForCategory(category);
 			console.log("Using factor: " + factor + " for category: " + category);
 			let last = response.values[response.values.length - 1];
@@ -35,7 +35,7 @@ app.post('/api/predict', (req, res) => {
 	})
 })
 
-function makeTickerResponse() {
+function makeTickerResponse(category) {
 	return new Promise(function(resolve, reject) {
 		createTimeDictFromIndexData('./S&P 500 Historical Data (3).csv').then((data) => {
 			var keys = Object.keys(data);
@@ -43,7 +43,7 @@ function makeTickerResponse() {
 			var values = keys.map(function(key){
 				return parseFloat(data[key].replace(/,/g, ''));
 			});
-			resolve({dates: keys, values: values, ticker:'S&P 500'});
+			resolve({dates: keys, values: values, ticker:'S&P 500', category: category});
 		});
 	});
 }
