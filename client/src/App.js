@@ -8,8 +8,19 @@ import 'whatwg-fetch'
 
 
 class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {ticker: null};
+    this.onPredict = this.onPredict.bind(this);
+  }
+
+  onPredict(updated_ticker_data) {
+    this.setState({ticker: updated_ticker_data});
+  }
+
   render() {
-      console.log("Rengering app");
+      console.log("Rendering app");
     return (
         <div className="App">
           <header className="App-header">
@@ -18,7 +29,7 @@ class App extends React.Component {
           </header>
           <div className="content">
               <div>
-                  <Form />
+                  <Form onPredict={this.onPredict}/>
                   <Timeline
                       dataSource={{
                           sourceType: 'profile',
@@ -32,7 +43,7 @@ class App extends React.Component {
                   />
               </div>
               <div style={{display: 'flex', justifyContent: 'center'}}>
-                  <GraphApp />
+                  <GraphApp data={this.state.ticker}/>
               </div>
           </div>
 

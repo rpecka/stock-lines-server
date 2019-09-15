@@ -16,10 +16,27 @@ class Form extends Component {
       this.setState({value: event.target.value});
   }
 
+  predict(text) {
+    fetch('/api/predict', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept-Type': 'application/json'
+      },
+      body: JSON.stringify({text: text})
+    }).then((response) => {
+      response.json().then((json) => {
+        console.log("calling onPredict");
+        this.props.onPredict(json);
+      });
+    });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     let tweetCards = this.state.tweetArray;
     tweetCards.unshift(this.state.value);
+    this.predict(this.state.value);
     this.setState({tweetArray: tweetCards, value: ''})
   }
 
