@@ -10,42 +10,57 @@ import { TimeSeries } from "pondjs";
 
 class GraphApp extends React.Component {
 	constructor(props) {
-		super(props);
-		this.state = { timeseries: null };
+		super(props)
+		this.state = props;
 	}
 
-	componentDidMount() {
-		this.getTicker();
+	componentWillReceiveProps(nextProps) {
+		if (this.props.data !== nextProps.data && nextProps.data != null) {
+			var result = this.makeSeriesFromData(nextProps.data);
+			this.setState({timeseries: result[0], min: result[1], max: result[2]});
+		}
+	}
+
+	makeSeriesFromData(ticker_data) {
+		var data = {
+			name: ticker_data.ticker,
+			columns: ["time", "price"],
+			points: []
+		};
+		for (var i = 0; i < ticker_data.dates.length; i++) {
+			data.points.push([ticker_data.dates[i], ticker_data.values[i]])
+		}
+		let max = Math.max.apply(null, ticker_data.values);
+		let min = Math.min.apply(null, ticker_data.values);
+		return [new TimeSeries(data), min, max];
 	}
 
 	getTicker() {
 		console.log('Fetching snp ticker data');
 		fetch('/api/ticker', {
 			method: 'POST',
+			headers: {
+				"Content-Type": 'application/json'
+			},
 			body: JSON.stringify({ticker: 'snp'})
 		}).then((response) => {
 			response.json().then((json) => {
 				console.log(json)
-				var data = {
-					name: json.ticker,
-					columns: ["time", "price"],
-					points: []
-				};
-				for (var i = 0; i < json.dates.length; i++) {
-					data.points.push([json.dates[i], json.values[i]])
-				}
-				let max = Math.max.apply(null, json.values);
-				let min = Math.min.apply(null, json.values);
-				var timeseries = new TimeSeries(data);
-				this.setState({timeseries: timeseries, min: min, max: max});
+				var result = this.makeSeriesFromData(json);
+				this.setState({timeseries: result[0], min: result[1], max: result[2]});
 			});
 		});
 	}
 
 	render() {
+		console.log("Rendering graph")
+		var dataAvailable = this.state.timeseries != null;
+		if (!dataAvailable) {
+			this.getTicker();
+		}
 		return (
 			<div>
-				{ this.state.timeseries != null ?
+				{ dataAvailable ?
 					<Graph 
 						timeseries={this.state.timeseries}
 						min={this.state.min}
