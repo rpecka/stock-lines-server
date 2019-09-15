@@ -37,3 +37,7 @@ h1.App-title {
   align-items: top;
   justify-content: center;
 }
+
+.col {
+  max-width: 300px;
+}

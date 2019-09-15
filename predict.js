@@ -2,9 +2,14 @@ const automl = require('@google-cloud/automl');
 
 const client = new automl.PredictionServiceClient();
 
+const model_versions = {
+	version8: 'TCN8030616067907362128',
+	version9: 'TCN6809101348711287913'
+}
+
 const projectId = 'stock-lines';
 const computeRegion = 'us-central1';
-const modelId = 'TCN8030616067907362128';
+const modelId = model_versions.version9;
 
 const modelFullId = client.modelPath(projectId, computeRegion, modelId);
 

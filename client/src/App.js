@@ -28,7 +28,7 @@ class App extends React.Component {
               <Intro message="tweet as if you were trump and see the stock reaction"/>
           </header>
           <div className="content">
-              <div>
+              <div className="col">
                   <Form onPredict={this.onPredict}/>
                   <Timeline
                       dataSource={{
@@ -37,7 +37,8 @@ class App extends React.Component {
                       }}
                       options={{
                           username: 'realDonaldTrump',
-                          height: 800
+                          height: 800,
+                          width: 300
                       }}
                       onLoad={() => console.log('Timeline is loaded!')}
                   />
