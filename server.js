@@ -25,6 +25,7 @@ app.post('/api/predict', (req, res) => {
 	predict(text).then((category) => {
 		makeTickerResponse().then((response) => {
 			let factor = factorForCategory(category);
+			console.log("Using factor: " + factor + " for category: " + category);
 			let last = response.values[response.values.length - 1];
 			let newPrice = last + last * factor;
 			response.dates.push((new Date).getTime());
@@ -49,15 +50,15 @@ function makeTickerResponse() {
 
 function factorForCategory(category) {
 	if (category === "drastic decrease") {
-		return -0.015;
+		return -1 * ((Math.random() * 0.01) + 0.015);
 	} else if (category === "decrease") {
-		return -0.005;
+		return -1 * ((Math.random() * 0.01) + 0.005);
 	} else if (category == "no_change") {
-		return 0;
+		return (Math.random() * 0.01) - 0.005;
 	} else if (category == "increase") {
-		return 0.005
+		return (Math.random() * 0.01) + 0.005;
 	} else {
-		return 0.015;
+		return (Math.random() * 0.01) + 0.015;
 	}
 }
 

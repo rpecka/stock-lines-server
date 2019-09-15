@@ -4,7 +4,7 @@ const client = new automl.PredictionServiceClient();
 
 const projectId = 'stock-lines';
 const computeRegion = 'us-central1';
-const modelId = 'TCN864946777993838841';
+const modelId = 'TCN8030616067907362128';
 
 const modelFullId = client.modelPath(projectId, computeRegion, modelId);
 
