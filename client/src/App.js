@@ -37,7 +37,7 @@ class App extends React.Component {
                       }}
                       options={{
                           username: 'realDonaldTrump',
-                          height: 400
+                          height: 800
                       }}
                       onLoad={() => console.log('Timeline is loaded!')}
                   />

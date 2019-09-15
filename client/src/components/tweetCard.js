@@ -8,8 +8,8 @@ class TweetCard extends Component {
         return (
             <div className="tweet">
                 <div className="handle">
-                <img src={Trump} />
-                <h3> "Donald J. Trump" </h3>
+                    <img src={Trump} />
+                    <h3> "Donald J. Trump" </h3>
                 </div>
             <p>
                 {this.props.tweettext}

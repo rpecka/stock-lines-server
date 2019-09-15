@@ -76,6 +76,8 @@ class Graph extends React.Component {
 	render() {
 		return (
 			<ChartContainer
+				title={this.props.timeseries.name()}
+				titleStyle={{fill: "#000000", fontWeight: 20000}}
 				timeRange={this.props.timeseries.timerange()}
 				paddingRight={100}
 				maxTime={this.props.timeseries.timerange().end()}
