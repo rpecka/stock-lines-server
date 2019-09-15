@@ -97,7 +97,7 @@ class Graph extends React.Component {
 						max={this.props.max}
 						width="60"
 						type="linear"
-						format="$,.2f"
+						format="$,"
 					/>
 					<Charts>
 						<LineChart
