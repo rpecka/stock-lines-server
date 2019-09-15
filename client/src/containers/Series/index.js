@@ -1,13 +1,10 @@
 import React, {Component} from "react";
-import TweetCard from '../../components/tweetCard';
+import TweetTable from '../../components/TweetTable';
 
 class Form extends Component {
-state= {
-     tweetArray : []
-};
   constructor(props) {
       super(props);
-      this.state = {value: ''};
+      this.state = {tweetArray: []};
 
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,11 +15,10 @@ state= {
   }
 
   handleSubmit(event) {
-      event.preventDefault();
-      let tweetCards = [this.state.tweetArray];
-      console.log('this.state.tweetArray');
-     tweetCards.push(this.state.value);
-     this.setState({tweetArray: tweetCards})
+    event.preventDefault();
+    let tweetCards = this.state.tweetArray;
+    tweetCards.unshift(this.state.value);
+    this.setState({tweetArray: tweetCards})
   }
 
     render() {
@@ -36,7 +32,7 @@ state= {
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
-                <TweetCard tweettext = {this.state.tweetArray}/>
+                <TweetTable tweetArray = {this.state.tweetArray}/>
             </div>
         );
     }
