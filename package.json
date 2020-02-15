@@ -21,7 +21,7 @@
     "react-scripts": "^3.1.1",
     "react-timeseries-charts": "^0.16.1",
     "react-twitter-widgets": "^1.7.1",
-    "yarn": "^1.17.3"
+    "yarn": "^1.22.0"
   },
   "devDependencies": {
     "concurrently": "^4.1.2"
